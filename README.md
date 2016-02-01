@@ -13,6 +13,7 @@ installing Ruby @
   * [Installing Ruby](#installing-ruby)
   * [Installing Bundler](#installing-bundler)
   * [Installing Rails](#installing-rails)
+* [Class Resources](#class-resources)
 * [After the Class](#after-the-class)
 
 ## What to Bring
@@ -101,6 +102,10 @@ Again, if you are using rbenv don't forget to run
 You need to install Rails globally to be able to generate new projects. A local
 version will be installed in the generated project, to allow for different
 Rails versions to be used locally.
+
+## Class Resources
+
+* [Cheat Sheet](https://rawgit.com/CincyWWC/rails-crash-course/master/cheat-sheet.html)
 
 ## After the Class
 
