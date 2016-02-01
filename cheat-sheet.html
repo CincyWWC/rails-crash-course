@@ -1,0 +1,196 @@
+<html>
+<head>
+  <title>WWC Cincy - Ruby on Rails Crash Course Cheat Sheet</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <style>
+  body, pre, .table th, .table td {
+    font-size: 12px;
+  }
+
+  .section-heading {
+    display: inline-block;
+    font-weight: 700;
+    margin: 5px 0;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>Ruby on Rails Crash Course Cheat Sheet</h3>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              Ruby
+            </h3>
+          </div>
+          <div class="panel-body">
+            <small class="section-heading text-uppercase text-muted">Types</small>
+
+            <table class="table table-condensed">
+              <tr>
+                <td><strong>Integer</strong></td>
+                <td><samp>12345</samp></td>
+              </tr>
+              <tr>
+                <td><strong>Float</strong></td>
+                <td><samp>1.2345</samp></td>
+              </tr>
+              <tr>
+                <td><strong>Symbol</strong></td>
+                <td><samp>:key</samp></td>
+              </tr>
+              <tr>
+                <td><strong>Basic String</strong></td>
+                <td><samp>'example'</samp></td>
+              </tr>
+              <tr>
+                <td><strong>Interpolated String</strong></td>
+                <td><samp>"example #{variable}"</samp></td>
+              </tr>
+              <tr>
+                <td><strong>Array</strong></td>
+                <td>[1, 2, 3]</td>
+              </tr>
+              <tr>
+                <td><strong>Hash</strong></td>
+                <td><samp>{ symbol_key: value, 'string_key': value }</samp></td>
+              </tr>
+            </table>
+
+            <small class="section-heading text-uppercase text-muted">Expressions</small>
+
+<pre>if expr
+elsif expr
+end</pre>
+
+<pre>expr if expr</pre>
+
+<pre>expr unless expr</pre>
+
+<pre>while expr do
+end</pre>
+
+<pre>[].each do
+end</pre>
+
+            <small class="section-heading text-uppercase text-muted">Classes and Functions</small>
+
+<pre>class ClassName
+  def function_name
+  end
+
+  def function_name
+  rescue ExceptionClass => e
+  end
+end</pre>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              Rails
+            </h3>
+          </div>
+          <div class="panel-body">
+            <dl>
+              <dt>Models</dt>
+              <dd>
+                Represent the objects in your system.
+                <ul>
+                  <li>Name is singular &mdash; <samp>Post</samp></li>
+                </ul>
+              </dd>
+
+              <dt>Controllers</dt>
+              <dd>
+                Handles endpoints for the application.
+                <ul>
+                  <li>Name is plural &mdash; <samp>PostsController</samp></li>
+                  <li>
+                    Standard CRUD endpoints are
+                    <ul>
+                      <li><samp>index</samp> &mdash; lists all models</li>
+                      <li><samp>show</samp> &mdash; displays individual model with <samp>params[:id]</samp></li>
+                      <li><samp>new</samp> &mdash; displays a form to create a new model</li>
+                      <li><samp>create</samp> &mdash; creates a new model with the passed <samp>params[:model_name]</samp></li>
+                      <li><samp>delete</samp> &mdash; destroys individual model</li>
+                    </ul>
+                  </li>
+                </ul>
+              </dd>
+
+              <dt>Views</dt>
+              <dd>
+                Handles the HTML view for each endpoint in the application.
+                <ul>
+                  <li>Name matches controller and function &mdash; <samp>views/posts/index.html.erb</samp></li>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              Command Line
+            </h3>
+          </div>
+          <div class="panel-body">
+            <small class="section-heading text-uppercase text-muted">Rails</small>
+
+            <table class="table table-condensed">
+              <tr>
+                <td><strong>List commands</strong></td>
+                <td><samp>rails help</samp></td>
+              </tr>
+              <tr>
+                <td><strong>Start server</strong></td>
+                <td><samp>rails server</samp></td>
+              </tr>
+              <tr>
+                <td><strong>Generate new model</strong></td>
+                <td><samp>rails generate model</samp></td>
+              </tr>
+            </table>
+
+            <small class="section-heading text-uppercase text-muted">Rake</small>
+
+            <table class="table table-condensed">
+              <tr>
+                <td><strong>List commands</strong></td>
+                <td><samp>rake -T</samp></td>
+              </tr>
+              <tr>
+                <td><strong>List routes</strong></td>
+                <td><samp>rake routes</samp></td>
+              </tr>
+              <tr>
+                <td><strong>Migrate database</strong></td>
+                <td><samp>rake db:migrate</samp></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
