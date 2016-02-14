@@ -14,6 +14,10 @@
     font-weight: 700;
     margin: 5px 0;
   }
+
+  dl {
+    margin-bottom: 0;
+  }
   </style>
 </head>
 <body>
@@ -120,17 +124,53 @@ end</pre>
                 Handles endpoints for the application.
                 <ul>
                   <li>Name is plural &mdash; <samp>PostsController</samp></li>
-                  <li>
-                    Standard CRUD endpoints are
-                    <ul>
-                      <li><samp>index</samp> &mdash; lists all models</li>
-                      <li><samp>show</samp> &mdash; displays individual model with <samp>params[:id]</samp></li>
-                      <li><samp>new</samp> &mdash; displays a form to create a new model</li>
-                      <li><samp>create</samp> &mdash; creates a new model with the passed <samp>params[:model_name]</samp></li>
-                      <li><samp>delete</samp> &mdash; destroys individual model</li>
-                    </ul>
-                  </li>
                 </ul>
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Method</th>
+                      <th>Route</th>
+                      <th>Used For</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>index</td>
+                      <td>/posts</td>
+                      <td>Lists all models</td>
+                    </tr>
+                    <tr>
+                      <td>show</td>
+                      <td>/post/:id</td>
+                      <td>Displays single model</td>
+                    </tr>
+                    <tr>
+                      <td>new</td>
+                      <td>/post/new</td>
+                      <td>Displays form to create new model</td>
+                    </tr>
+                    <tr>
+                      <td>create</td>
+                      <td>/posts</td>
+                      <td>Creates new model</td>
+                    </tr>
+                    <tr>
+                      <td>edit</td>
+                      <td>/posts/:id/edit</td>
+                      <td>Displays form to update existing model</td>
+                    </tr>
+                    <tr>
+                      <td>update</td>
+                      <td>/posts/:id</td>
+                      <td>Updates existing model</td>
+                    </tr>
+                    <tr>
+                      <td>destroy</td>
+                      <td>/posts/:id</td>
+                      <td>Deletes model</td>
+                    </tr>
+                  </tbody>
+                </table>
               </dd>
 
               <dt>Views</dt>
