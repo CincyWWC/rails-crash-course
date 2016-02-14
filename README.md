@@ -105,6 +105,7 @@ Rails versions to be used locally.
 
 ## Class Resources
 
+* [Slides](https://rawgit.com/CincyWWC/rails-crash-course/master/slides.html)
 * [Cheat Sheet](https://rawgit.com/CincyWWC/rails-crash-course/master/cheat-sheet.html)
 
 ## After the Class

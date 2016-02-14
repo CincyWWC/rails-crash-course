@@ -1,0 +1,50 @@
+@import url(https://fonts.googleapis.com/css?family=Bitter:400,700);
+@import url(https://fonts.googleapis.com/css?family=Cabin:400,400italic,700);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+
+body {
+  font-family: 'Cabin';
+}
+
+h1, h2, h3 {
+  font-family: 'Bitter';
+  font-weight: 700;
+}
+
+li {
+  padding: 10px 0;
+}
+
+/* ------------------------------------------------------------------------- */
+
+.remark-slide-content {
+  font-size: 26px;
+}
+
+.remark-slide-content h1 {
+  font-size: 50px;
+}
+
+/* ------------------------------------------------------------------------- */
+
+.remark-code, .remark-inline-code {
+  font-family: 'Source Code Pro';
+}
+
+/* ------------------------------------------------------------------------- */
+
+.slide--title {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.slide--title h1 {
+  font-size: 58px;
+}
+
+.slide--title h2 {
+  font-size: 26px;
+  line-height: 0.8;
+  color: #AAA;
+  font-family: 'Cabin';
+}
