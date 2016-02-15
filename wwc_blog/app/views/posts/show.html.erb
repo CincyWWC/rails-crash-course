@@ -1,0 +1,10 @@
+<%= link_to 'Back to index >', posts_path, class: 'pull-right' %>
+
+<h2>
+  <%= @post.title %>
+  <small><%= @post.created_at.to_formatted_s(:long) %></small>
+</h2>
+
+<p>
+  <%= @post.content %>
+</p>

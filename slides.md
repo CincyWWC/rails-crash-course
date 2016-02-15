@@ -309,9 +309,94 @@ container
 ```erb
 <div class="container">
   <div class="col-md-12">
-    <h1>WWC Blog</h1>
+    <div class="page-header">
+      <h1>WWC Blog</h1>
+    </div>
 
     <%= yield %>
   </div>
 </div>
 ```
+
+---
+
+# Viewing a Post
+
+* Of course, we want to see more than the title of our posts, we need to show individual posts
+* The steps to add a show page are similar to adding the index
+  * Add show handler to `PostsController`
+  * show view to `app/views/posts/show.html.erb`
+
+---
+
+# Viewing a Post
+
+`app/controllers/posts_controller.rb`
+```ruby
+def show
+  @post = Post.find(params[:id])
+end
+```
+
+---
+
+# Viewing a Post
+
+`app/views/posts/show.html.erb`
+```erb
+<h2>
+  <%= @post.title %>
+  <small>
+    <%= @post.created_at
+             .to_formatted_s(:long) %>
+  </small>
+</h2>
+
+<p>
+  <%= @post.content %>
+</p>
+```
+
+---
+
+# Viewing a Post
+
+* We can now view our post at the URL `http://localhost:3000/posts/1`
+* It would be convenient to use links to our posts for navigation
+* Rails provides HTML helpers to handle basic actions, like linking, html forms, and paths
+  * `link_to 'label', path`
+
+---
+
+# Path Helpers
+
+* Path helpers are convenient ways to link to other parts of your application
+* View all available routes, and their path helper name, using the rake command
+`./bin/rake routes`
+* Add `_path` to the end of the prefix to use the path helper
+* You can also add `_url` to get the full URL
+
+---
+
+# Viewing a Post
+
+`app/views/posts/show.html.erb`
+```erb
+<%= link_to 'Back to index >', posts_path,
+    class: 'pull-right' %>
+<h2>
+...
+```
+
+---
+
+# Viewing a Post
+
+`app/views/posts/index.html.erb`
+```erb
+<li>
+  <%= link_to post.title, post_path(post) %>
+</li>
+```
+
+* If the route takes parameters, you can pass them to the path helper
