@@ -400,3 +400,141 @@ end
 ```
 
 * If the route takes parameters, you can pass them to the path helper
+
+---
+
+# Creating a New Post
+
+* We created posts from the command line, but that is not convenient at all
+* Using helpers provided by Rails, it is easy to create a form to make a new post
+* Creating a post involves two routes
+  * New - Displays the form for creating a new post
+  * Create - Receives form to create new post
+
+---
+
+# Creating a New Post
+
+* Create a dummy container that will tell our view what kind of model we are building a form for
+
+`app/controllers/posts_controller.rb`
+```ruby
+def new
+  @post = Post.new
+end
+```
+
+---
+
+# Creating a New Post
+
+`app/views/posts/new.html.erb`
+```erb
+<%= link_to 'Back to index >', posts_path,
+    class: 'pull-right' %>
+
+<h2>Create Post</h2>
+
+<%= form_for @post do |f| %>
+  <div class='form-group'>
+    <%= f.label :title %>
+    <%= f.text_field :title,
+        class: 'form-control' %>
+  </div>
+```
+
+---
+
+# Creating a New Post
+
+`app/views/posts/new.html.erb` (continued)
+```erb
+  <div class='form-group'>
+    <%= f.label :content %>
+    <%= f.text_area :content,
+        class: 'form-control' %>
+  </div>
+  <%= f.submit 'Create Post',
+      class: 'btn btn-default' %>
+<% end %>
+```
+
+---
+
+# Creating a New Post
+
+* Now that we have a new post form, you can view it at `http://localhost:3000/posts/new`
+* We can also add a link to the form on our index page
+
+`app/views/posts/index.html.erb`
+```erb
+<%= link_to 'New Post', new_post_path,
+    class: 'btn btn-default' %>
+```
+
+---
+
+# Creating a New Post
+
+* We can fill out the form, but our app doesn't know how to create a post yet!
+* Let's debug to see what our form is sending to the server
+
+`app/controllers/posts_controller.rb`
+```ruby
+def create
+  byebug
+end
+```
+
+---
+
+# Creating a New Post
+
+* Submit your form, and then look at your Rails server in the console
+* You should see the code with a `=>` pointing at the code we are executing
+* Type `params` to see what the form sent up
+* When you are done, type `next` to execute the next line, or `continue` to stop debugging
+
+---
+
+# Creating a New Post
+
+`app/controllers/posts_controller.rb`
+```ruby
+def create
+  Post.create(post_params)
+end
+
+def post_params
+  params.require(:post).permit(
+    :title,
+    :content
+  )
+end
+```
+
+---
+
+# Creating a New Post
+
+* Now we have created a post! But it still shows an error:
+
+`Missing template posts/create, application/create...`
+
+* Instead of adding a whole new template for create, we can forward the user to their newly created
+post
+
+---
+
+# Creating a New Post
+
+* If you pass a model to `redirect_to`, Rails assumes you want to go the show page
+* You can also pass a path to another page and redirect there
+
+`app/controllers/posts_controller.rb`
+```ruby
+def create
+  post = Post.create(post_params)
+  redirect_to post
+end
+```
