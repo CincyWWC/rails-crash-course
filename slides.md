@@ -625,3 +625,57 @@ end
     edit_post_path(@post),
     class: 'btn btn-default' %>
 ```
+
+---
+
+# Deleting a Post
+
+* You may also want to remove a post from your blog
+* Rails uses the `destroy` command to remove items
+* It uses the post_path, and you need to use a DELETE http call to indicate it is a destroy
+
+---
+
+# Deleting a Post
+
+`app/views/posts/show.html.erb`
+```erb
+...
+<%= link_to 'Delete Post',
+    post_path(@post),
+    method: :delete,
+    class: 'btn btn-default' %>
+```
+
+---
+
+# Deleting a Post
+
+`app/controllers/posts_controller.rb`
+```ruby
+def destroy
+  post = Post.find(params[:id])
+  flash[:success] = "Post \"#{post.title}\" was deleted."
+  post.destroy
+  redirect_to posts_path
+end
+```
+
+---
+
+# Displaying Flash Messages
+
+* Use Bootstrap alerts to display a success message
+
+`app/views/layouts/applicaiton.html.erb`
+```erb
+<% flash.each do |type, message| %>
+  <div class="alert alert-<%= type %> alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+    <%= message %>
+  </div>
+<% end %>
+```
