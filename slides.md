@@ -538,3 +538,90 @@ def create
   redirect_to post
 end
 ```
+
+---
+
+# Editing a Post
+
+* You may want to change a post that you have already added
+* This will look extremely similar, so much so that we will share code!
+
+`app/controllers/posts_controller.rb`
+```ruby
+def edit
+  @post = Post.find(params[:id])
+end
+```
+
+---
+
+# Editing a Post
+
+* We can share the form with the `new` view by creating a shared template
+* Copy the form from `app/views/posts/new.html.erb` into a template
+
+`app/views/posts/_form.html.erb`
+```erb
+<%= form_for @post do |f| %>
+...
+<% end %>
+```
+
+---
+
+# Editing a Post
+
+* And we can reference this in both the `new` and `edit` views
+
+`app/views/posts/new.html.erb`
+```erb
+<%= link_to 'Back to index >', posts_path,
+    class: 'pull-right' %>
+
+<h2>Create Post</h2>
+
+<%= render 'form' %>
+```
+
+---
+
+# Editing a Post
+
+`app/views/posts/edit.html.erb`
+```erb
+<%= link_to 'Back to index >', posts_path,
+    class: 'pull-right' %>
+
+<h2>Create Post</h2>
+
+<%= render 'form' %>
+```
+
+---
+
+# Editing a Post
+
+* Like how `new` has a `create` route for saving, `edit` has an `update`
+
+`app/controllers/posts_controller.rb`
+```ruby
+def update
+  post = Post.find(params[:id])
+  post.update(post_params)
+  redirect_to post
+end
+```
+
+---
+
+# Editing a Post
+
+* To finish our edit feature, we need to link to it from the show page
+
+`app/views/posts/show.html.erb`
+```erb
+...
+<%= link_to 'Edit Post',
+    edit_post_path(@post),
+    class: 'btn btn-default' %>
+```
