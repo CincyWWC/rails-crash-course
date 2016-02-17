@@ -9,5 +9,26 @@
   <%= @post.content %>
 </p>
 
+<% @post.comments.each do |comment| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%= "#{comment.author} - #{comment.created_at}" %>
+    </div>
+    <div class="panel-body">
+      <%= comment.content %>
+    </div>
+  </div>
+<% end %>
+
+<hr />
+
+<h3>
+  Add Comment
+</h3>
+
+<%= render 'comment_form' %>
+
+<hr />
+
 <%= link_to 'Edit Post', edit_post_path(@post), class: 'btn btn-default' %>
 <%= link_to 'Delete Post', post_path(@post), method: :delete, class: 'btn btn-default' %>

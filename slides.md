@@ -679,3 +679,169 @@ end
   </div>
 <% end %>
 ```
+
+---
+
+# Adding Comments
+
+* One of the greatest parts of Rails is how easy it is to manage related models
+* To demonstrate how this works, we will add comments to our posts
+  * One post will have many comments
+
+---
+
+# Adding Comments
+
+* Use `references` to declare a relationship to a parent model when generating a new model
+
+```bash
+./bin/rails generate model Comment
+author:string content:text
+post:references
+```
+
+---
+
+# Adding Comments
+
+* In the generated Comment model, you can see the relationship to the Post
+
+`app/models/comment.rb`
+```ruby
+class Comment < ActiveRecord::Base
+  belongs_to :post
+end
+```
+
+---
+
+# Adding Comments
+
+* We also want to define the relationship on the Post side, which we can do by adding this code
+
+`app/models/post.rb`
+```ruby
+class Post < ActiveRecord::Base
+  has_many :comments
+end
+```
+
+---
+
+# Adding Comments
+
+* We will use a nested route so that the comments are nested beneath their post
+  * Check `./bin/rake routes` to see what you did!
+
+`app/config/routes.rb`
+```ruby
+resources :posts do
+  resources :comments
+end
+```
+
+---
+
+# Adding Comments
+
+* Next, we will add the comment form to our post show page
+
+`app/views/posts/_comment_form.html.erb`
+```erb
+<%= form_for :comment,
+    path: post_comments_path(@post) do |f| %>
+  <div class='form-group'>
+    <%= f.label :author %>
+    <%= f.text_field :author,
+        class: 'form-control' %>
+  </div>
+```
+
+---
+
+# Adding Comments
+
+`app/views/posts/_comment_form.html.erb` (continued)
+```erb
+  <div class='form-group'>
+    <%= f.label :content %>
+    <%= f.text_area :content,
+        class: 'form-control' %>
+  </div>
+  <%= f.submit 'Save',
+      class: 'btn btn-default' %>
+<% end %>
+```
+
+---
+
+# Adding Comments
+
+* And then add the reference to the comment form on our show form
+
+`app/views/posts/show.html.erb`
+```erb
+...
+</p>
+<hr />
+<h3>Add Comment</h3>
+<%= render 'comment_form' %>
+<hr />
+<%= link_to 'Edit Post'...
+```
+
+---
+
+# Adding Comments
+
+* Then we need to add a controller to handle saving a comment
+
+`app/controllers/comments_controller.rb`
+```erb
+class CommentsController < ApplicationController
+  def comment_params
+    params.require(:comment).permit(
+      :author,
+      :content
+    )
+  end
+end
+```
+
+---
+
+# Adding Comments
+
+* Rails has an interesting way to create nested models through chaining relationships
+
+`app/controllers/comments_controller.rb`
+```erb
+class CommentsController < ApplicationController
+  def create
+    post = Post.find(params[:post_id])
+    comment = post.comments.create(
+      comment_params
+    )
+    redirect_to post
+  end
+end
+```
+
+---
+
+# Adding Comments
+
+`app/views/posts/show.html.erb`
+```erb
+<% @post.comments.each do |comment| %>
+<div class="panel panel-default">
+<div class="panel-heading">
+<%= "#{comment.author} -
+     #{comment.created_at}" %>
+</div>
+<div class="panel-body">
+<%= comment.content %>
+</div>
+</div>
+<% end %>
+```
