@@ -17,7 +17,7 @@ class: slide--title
 
 class: slide--title
 
-## Thank you to our sponsor
+## Thank you to our sponsor and host
 # Oodle.io
 
 ---
@@ -45,6 +45,7 @@ class: slide--title
 # History of Ruby
 
 * Created by Yukihiro "Matz" Matsumoto in 1995 in Japan
+  * Wanted an object-oriented scripting language
 * First English-language book was published in 2000
 * Around 2005, DHH (David Heinemeier Hansson) was hired by 37Signals to create Basecamp
 
@@ -57,11 +58,38 @@ class: slide--title
 
 ---
 
+# Why We Ruby
+
+* Easy to understand
+* Easy to build a domain-specific language
+  * We will see this used significantly in Rails
+* Metaprogramming
+  * Dynamically defining functions
+  * Also a large part of how Rails works
+* Large standard library
+* Large community, lots of gems to use
+
+---
+
+# What We Use Ruby For
+
+* Complex scripting
+  * Homebrew, the popular package manager for OSX, is built on Ruby scripts
+* Automation
+  * We use Chef to automate managing server configurations
+  * We use Capybara to automate deploying our Rails app across many servers
+* Building Web Applications
+  * Rails, that's why we're here!
+
+---
+
 # Running Ruby
 
 * Ruby is an interpreted language, runs on a virtual machine (VM)
 * There are multiple versions of the Ruby virtual machine, one of the most common being MRI (Matz's
 Ruby Interpreter)
+* Ruby often uses C/C++ libraries to allow for faster, system-level code
+  * This is the biggest hurdle in running Ruby on Windows
 
 ---
 
@@ -86,9 +114,58 @@ Ruby Interpreter)
 
 ---
 
+# Basic Ruby Types
+
+
+
+---
+
 class: slide--title
 
 # Introduction to Rails
+
+---
+
+# What is Rails?
+
+* Rails is a full-stack framework for building web applications
+  * Covers both the server and front end
+* "Convention over configuration"
+  * Instead of a lot of boilerplate code and configuration, Rails uses naming conventions to
+  determine what role an object plays in the system
+  * This results in being able to write less, but do more
+
+---
+
+# Why We Love Rails
+
+* Rapid development
+  * We can build production-ready applications super quick
+* Every project looks approximately the same
+  * We all have to follow the same conventions, and have added more of our own as needed
+  * This makes a project very easy to follow
+* Someone has done it before
+  * A lot of common functionality, like authentication, is wrapped up in a gem and ready to use
+
+---
+
+# MVC in Rails
+
+
+
+---
+
+# Tools We Use with Rails
+
+* Bundler
+* Rake
+
+---
+
+# Bundler
+
+* Bundler is used to manage gem dependencies in Ruby
+*
 
 ---
 
@@ -845,3 +922,39 @@ end
 </div>
 <% end %>
 ```
+
+---
+
+# Continuing on with Rails
+
+* Next steps would include
+  * Test driven development with Rails and RSpec
+  * Authentication
+  * Your own application!
+
+---
+
+# Continuing on with Rails
+
+* This covers the basics of starting a new project with Rails
+* There are plenty of other features to cover, but the class would never end!
+* The very best part of Rails is the size of the community, someone has probably tried to solve
+the problem you're having!
+* Google, as with everything else in programming, is your best friend
+
+---
+
+# Continuing on with Rails
+
+* There are also several local resources available to continue learning more about Rails
+  * Cincy Tech Slack - http://cincytechscene.org/
+  * Ruby Brigade Meetup - http://cincyrb.com/
+  * Gaslight Coffee Hour - http://www.meetup.com/Gaslight-Coffee-Weekly-Open-House
+  * More WWC sessions! Please let us know what you want to learn more about.
+
+---
+
+class: slide--title
+
+# Thanks for coming!
+## @ktornwall - katherine@gaslight.co
