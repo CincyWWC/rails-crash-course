@@ -58,7 +58,27 @@ class: slide--title
 
 ---
 
-# Why We Ruby
+# Running Ruby
+
+* Ruby is an interpreted language, runs on a virtual machine (VM)
+* There are multiple versions of the Ruby virtual machine, one of the most common being MRI (Matz's
+Ruby Interpreter)
+* Ruby often uses C/C++ libraries to allow for faster, system-level code
+  * This is the biggest hurdle in running Ruby on Windows, as many popular gems can be difficult to
+  compile
+
+---
+
+# Running Ruby
+
+* Other examples of interpreted languages are
+  * Javascript
+  * Python
+  * Perl
+
+---
+
+# Why We Love Ruby
 
 * Easy to understand
 * Easy to build a domain-specific language
@@ -79,27 +99,16 @@ class: slide--title
   * We use Chef to automate managing server configurations
   * We use Capybara to automate deploying our Rails app across many servers
 * Building Web Applications
-  * Rails, that's why we're here!
 
 ---
 
 # Running Ruby
 
-* Ruby is an interpreted language, runs on a virtual machine (VM)
-* There are multiple versions of the Ruby virtual machine, one of the most common being MRI (Matz's
-Ruby Interpreter)
-* Ruby often uses C/C++ libraries to allow for faster, system-level code
-  * This is the biggest hurdle in running Ruby on Windows
-
----
-
-# Running Ruby
-
-* Other examples of interpreted languages are
-  * Javascript
-  * Python
-  * Perl
-* You can run Ruby files on the command line using `ruby filename.rb`
+* The basic way to run a script is to use `ruby filename.rb`
+* Most of the time you will run a gem using the name of the gem, for example
+  * `rails server`
+  * `bundle install`
+  * `rake routes`
 
 ---
 
@@ -114,9 +123,297 @@ Ruby Interpreter)
 
 ---
 
-# Basic Ruby Types
+# Learning Ruby
 
+* Let's start learning the basic syntax of Ruby so that we can understand the Rails workshop better
+* Start by getting a Ruby REPL running
+  * `irb` in the command line
+  * Waiting for Ruby to install? [https://repl.it/languages/ruby](https://repl.it/languages/ruby)
 
+---
+
+class: slide--title
+
+# Basic Types
+
+---
+
+# Integers
+
+```ruby
+irb> 123 + 876
+=> 999
+irb> 123 - 876
+=> -753
+irb> 123 * 876
+=> 107748
+irb> 123 / 876
+=> 0
+irb> 876 % 123
+=> 15
+
+```
+
+---
+
+# Floats (Decimals)
+
+* Floats are not very precise, like most languages
+
+```ruby
+irb> 1.23 / 8.76
+=> 0.1404109589041096
+irb> 2.333 * 2.333
+=> 5.442889000000001
+```
+
+---
+
+# Arrays
+
+* Arrays use the standard syntax you see in most languages
+* Arrays can contain a variety of types
+* Note: Ruby allows for trailing commas, as a stylistic choice
+
+```ruby
+irb> [1, 2, 3, 4, 5]
+=> [1, 2, 3, 4, 5]
+irb> [1, 'a', 1.23,]
+=> [1, "a", 1.23]
+```
+
+---
+
+# Strings
+
+* There are two types of strings
+  * Basic - using single quotes
+  * Interpolated - using double quotes
+
+---
+
+# Basic Strings
+
+```ruby
+irb> 'I am a string'
+=> "I am a string"
+irb> 'Can\'t you escape this string?'
+=> "Can't you escape this string?"
+```
+---
+
+# Interpolated Strings
+
+* Allows for including expressions in strings
+
+```ruby
+irb> my_array = [1, 2, 3, 4, 5]
+=> [1, 2, 3, 4, 5]
+irb> "My array: #{my_array.join(',')}"
+=> "My array: 1,2,3,4,5"
+```
+
+---
+
+# Symbols
+
+* Symbols are a type that is like an enumeration in other languages
+* They are represented by both an integer and a string, referred by their name
+
+```ruby
+irb> :i_am_a_symbol
+=> :i_am_a_symbol
+irb> :'You Can Use Anything'
+=> :"You Can Use Anything"
+```
+
+---
+
+# Hash
+
+* Think of an Object in Javascript, or a Dict in Python
+* A set of key, value pairs
+* Keys can be any value, but are normally symbols
+  * Occasionally you will use strings
+
+```ruby
+irb> { num: 123 }
+=> {:num=>123}
+```
+
+---
+
+# Hash
+
+* Note how I entered it one way (the "current" way), and it replied with the "old" way
+* The current style only allows symbols as keys, and is preferred
+* The old style allows any value, and is only used when needed
+
+```ruby
+irb> { 1 => 'asdf' }
+=> {1=>"asdf"}
+irb> { 'str' => 5 }
+=> {"str"=>5}
+```
+
+---
+
+# Local Variables
+
+* Variables are implicitly declared, no `var` required
+* Local variables are plain names, usually written using snake case
+
+```ruby
+irb> my_int = 123
+=> 123
+irb> my_arr = ['a', 'b', 'c']
+=> ["a", "b", "c"]
+irb> my_float = 54.1
+=> 54.1
+```
+
+---
+
+# Instance Variables
+
+* Variables can be referenced so that they are available across an instance of a class
+* Instance variables are denoted by prefixing the name with an `@` sign
+* These are used frequently in Rails to communicate between controllers and views
+
+```ruby
+irb> @title = 'My Story'
+=> "My Story"
+```
+
+---
+
+# Conditional Expressions
+
+* There are two main differences from many mainstream programming languages
+  * No parenthesis around the expression
+  * Else-If is written as `elsif`, the cause of many typos
+* If and If-Else statements are terminated using the `end` keyword
+
+---
+
+# Conditional Expressions
+
+```ruby
+if score > 80
+  puts 'You did great!'
+elsif score > 40
+  puts 'You passed.'
+else
+  puts 'You failed.'
+end
+```
+
+---
+
+# Conditional Expressions
+
+* Ruby also has a shortcut for "if not" to read more like a sentence, `unless`
+
+```ruby
+unless score > 40
+  puts 'You failed.'
+else
+  puts 'You passed.'
+end
+```
+
+---
+
+# Conditional Expressions
+
+* Ruby allows for a single-line if statement, but the syntax is flipped to read like a sentence
+
+```ruby
+errors = 'Failing score' if score <= 40
+```
+
+* This is extremely useful for guard statements
+
+```ruby
+return false unless param.present?
+param.add_things
+```
+
+---
+
+# Loops
+
+* Rails has the standard loops you'll find in most languages
+* While loops execute the code between the `do` and `end` keywords
+  * This is called a "block"
+
+```ruby
+i = 0
+while i < 7 do
+  puts "Count is now #{i}"
+  i++
+end
+```
+
+---
+
+# Loops
+
+* The loop you'll probably see most is iterating over an array, which is done using an array
+function
+* Each item is provided to the block through block params denoted between pipe characters
+
+```ruby
+@posts.each do |post|
+  puts post.title
+end
+```
+
+---
+
+# Defining Functions
+
+* Functions are defined using the `def` and `end` keywords
+* Ruby returns the last statement executed
+  * You can use `return` explicitly, but you will rarely see it
+
+```ruby
+def add_numbers(a, b)
+  a + b
+end
+```
+
+---
+
+# Rescuing Exceptions
+
+* You can rescue an exception thrown in a function by adding a rescue clause
+
+```ruby
+def boom
+  raise 'I am a caught error'
+rescue => e
+  puts e
+end
+```
+
+---
+
+# Class
+
+* Like most object-oriented languages, our code will be organized by using classes
+
+```ruby
+class Cat
+  def initialize(name)
+    @name = name
+  end
+
+  def sleep
+    puts "#{@name} is sleeping"
+  end
+end
+```
 
 ---
 
@@ -141,31 +438,58 @@ class: slide--title
 
 * Rapid development
   * We can build production-ready applications super quick
-* Every project looks approximately the same
+* Every project looks alike
   * We all have to follow the same conventions, and have added more of our own as needed
   * This makes a project very easy to follow
-* Someone has done it before
-  * A lot of common functionality, like authentication, is wrapped up in a gem and ready to use
 
 ---
 
+# Why We Love Rails
+
+* Someone has done it before
+  * A lot of common functionality, like authentication, is wrapped up in a gem and ready to use
+* Ruby is a nice language to develop in
+  * While you might feel like you are climbing an uphill battle with the magic of Rails at first,
+  once you have
+
+---
+
+class: slide--image
+
 # MVC in Rails
 
-
+![MVC Diagram for Rails](slide_assets/rails_mvc_diagram.png)
 
 ---
 
 # Tools We Use with Rails
 
 * Bundler
+* Rails
 * Rake
+
+---
+
+class: slide--title
+
+# Install Bundler and Rails!
+## Use instructions in README.md to install
 
 ---
 
 # Bundler
 
+* [http://bundler.io/](http://bundler.io/)
 * Bundler is used to manage gem dependencies in Ruby
-*
+* It plays the same role as NPM would in a Node application
+
+---
+
+# Rails and Rake
+
+* Rails comes with Rake, which is a tool that runs tasks related to our Rails application
+* There are historical reasons that some tasks are run using Rails, and others are run using Rake
+* To fix the confusion, Rake is being merged into Rails for Rails 5.0
 
 ---
 

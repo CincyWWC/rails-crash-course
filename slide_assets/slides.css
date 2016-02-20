@@ -51,3 +51,7 @@ li {
   color: #AAA;
   font-family: 'Cabin';
 }
+
+.slide--image img {
+  width: 100%;
+}
