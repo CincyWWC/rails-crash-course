@@ -78,13 +78,6 @@ Once installation is complete, if you are using rbenv don't forget to run
 This makes rbenv look for any gems you have recently installed, and makes them
 available to run from the command line.
 
-Once that is complete, run the command
-
-`bundle install --binstubs`
-
-This will create files in your `bin` folder that will properly scope bundled
-commands to your locally installed gems.
-
 ### Installing Rails
 
 To install Rails, use the following command:
